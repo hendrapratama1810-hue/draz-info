@@ -7,7 +7,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-
 body{min-height:100vh;background:#111;color:white;overflow-x:hidden}
 
 /* BACKGROUND */
@@ -24,17 +23,10 @@ z-index:-1;
 }
 
 /* CONTAINER */
-.container{
-padding:25px 12px 90px;
-text-align:center;
-}
+.container{padding:25px 12px 90px;text-align:center}
 
 /* TITLE */
-h1{
-font-size:26px;
-margin-bottom:15px;
-letter-spacing:2px;
-}
+h1{font-size:26px;margin-bottom:15px;letter-spacing:2px}
 
 /* PROFILE */
 .profile{
@@ -46,39 +38,29 @@ box-shadow:0 0 20px rgba(220,220,220,0.7)
 
 /* DESCRIPTION */
 .desc{
-max-width:320px;
-margin:0 auto 25px;
-font-size:12px;
-line-height:1.5;
-color:#ccc;
+max-width:320px;margin:0 auto 25px;
+font-size:12px;line-height:1.5;color:#ccc;
 }
 
 /* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(2, minmax(140px, 1fr));
-gap:16px;
-max-width:360px;
-margin:0 auto;
+gap:16px;max-width:360px;margin:0 auto;
 }
 
 /* BUTTON */
 .btn{
-aspect-ratio:1/1;
-border-radius:16px;
-overflow:hidden;
-cursor:pointer;background:#222;position:relative;
-box-shadow:
-0 0 12px rgba(200,200,200,0.6),
+aspect-ratio:1/1;border-radius:16px;overflow:hidden;cursor:pointer;
+background:#222;position:relative;
+box-shadow:0 0 12px rgba(200,200,200,0.6),
 0 0 28px rgba(200,200,200,0.35),
 inset 0 0 12px rgba(255,255,255,0.08);
 transition:0.25s;
 opacity:0;transform:translateY(30px);
 }
-
 .btn.show{opacity:1;transform:translateY(0)}
 .btn:active{transform:scale(0.95)}
-
 .btn img{width:100%;height:100%;object-fit:cover}
 
 /* LOADING */
@@ -87,13 +69,11 @@ position:fixed;inset:0;background:rgba(0,0,0,0.8);
 display:none;align-items:center;justify-content:center;
 flex-direction:column;z-index:999;
 }
-
 .loader{
 width:60px;height:60px;border:5px solid #555;border-top:5px solid white;
 border-radius:50%;animation:spin 1s linear infinite;margin-bottom:12px;
 }
 @keyframes spin{to{transform:rotate(360deg)}}
-
 .loading-text{
 font-size:14px;letter-spacing:2px;color:#ddd;
 animation:blink 1.5s infinite;
@@ -101,10 +81,7 @@ animation:blink 1.5s infinite;
 @keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
 
 /* FOOTER */
-.footer{
-position:fixed;bottom:8px;width:100%;
-text-align:center;color:#aaa;font-size:12px;
-}
+.footer{position:fixed;bottom:8px;width:100%;text-align:center;color:#aaa;font-size:12px}
 </style>
 </head>
 
@@ -139,7 +116,7 @@ ini adalah informasi dari DRAZ, jika ingin masuk ke dalam channel wa, discord, d
 </div>
 
 <div class="btn fade" onclick="go('https://wa.me/6283817102474')">
-  <img src="3button.jpg">
+  <img src="3button.png">
 </div>
 
 <div class="btn fade" onclick="go('https://tiktok.com/@hendraaaaaaaniii')">
@@ -160,10 +137,27 @@ ini adalah informasi dari DRAZ, jika ingin masuk ke dalam channel wa, discord, d
 <div class="footer">© By DRAZ</div>
 
 <script>
+const loading = document.getElementById("loading");
+
 function go(link){
-  document.getElementById("loading").style.display="flex";
+  loading.style.display="flex";
   setTimeout(()=>{ location.href=link; },1200);
 }
+
+/* HILANGKAN LOADING JIKA PINDAH APP / BALIK LAGI */
+document.addEventListener("visibilitychange", ()=>{
+  if(document.hidden){
+    loading.style.display="none";
+  }
+});
+
+window.addEventListener("pageshow", ()=>{
+  loading.style.display="none";
+});
+
+window.addEventListener("blur", ()=>{
+  loading.style.display="none";
+});
 
 /* FADE IN */
 const items=document.querySelectorAll(".fade");
