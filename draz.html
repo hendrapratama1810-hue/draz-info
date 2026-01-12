@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DRAZ INFORMATION</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{min-height:100vh;background:#111;color:white;overflow-x:hidden}
+
+/* BACKGROUND */
+.bg{
+position:fixed;inset:0;
+background:
+linear-gradient(135deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+linear-gradient(225deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+linear-gradient(315deg, rgba(255,255,255,0.05) 25%, transparent 25%);
+background-size:50px 50px;
+filter:blur(3px);
+z-index:-1;
+}
+
+/* CONTAINER */
+.container{
+padding:25px 12px 90px;
+text-align:center;
+}
+
+/* TITLE */
+h1{
+font-size:26px;
+margin-bottom:15px;
+letter-spacing:2px;
+}
+
+/* PROFILE */
+.profile{
+width:110px;height:110px;border-radius:50%;overflow:hidden;
+margin:0 auto 10px;border:3px solid #aaa;
+box-shadow:0 0 20px rgba(220,220,220,0.7)
+}
+.profile img{width:100%;height:100%;object-fit:cover}
+
+/* DESCRIPTION */
+.desc{
+max-width:320px;
+margin:0 auto 25px;
+font-size:12px;
+line-height:1.5;
+color:#ccc;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(2, minmax(140px, 1fr));
+gap:16px;
+max-width:360px;
+margin:0 auto;
+}
+
+/* BUTTON */
+.btn{
+aspect-ratio:1/1;
+border-radius:16px;
+overflow:hidden;
+cursor:pointer;background:#222;position:relative;
+box-shadow:
+0 0 12px rgba(200,200,200,0.6),
+0 0 28px rgba(200,200,200,0.35),
+inset 0 0 12px rgba(255,255,255,0.08);
+transition:0.25s;
+opacity:0;transform:translateY(30px);
+}
+
+.btn.show{opacity:1;transform:translateY(0)}
+.btn:active{transform:scale(0.95)}
+
+.btn img{width:100%;height:100%;object-fit:cover}
+
+/* LOADING */
+.loading{
+position:fixed;inset:0;background:rgba(0,0,0,0.8);
+display:none;align-items:center;justify-content:center;
+flex-direction:column;z-index:999;
+}
+
+.loader{
+width:60px;height:60px;border:5px solid #555;border-top:5px solid white;
+border-radius:50%;animation:spin 1s linear infinite;margin-bottom:12px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.loading-text{
+font-size:14px;letter-spacing:2px;color:#ddd;
+animation:blink 1.5s infinite;
+}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* FOOTER */
+.footer{
+position:fixed;bottom:8px;width:100%;
+text-align:center;color:#aaa;font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="loading" id="loading">
+  <div class="loader"></div>
+  <div class="loading-text">CONNECTING...</div>
+</div>
+
+<div class="container">
+<h1>DRAZ INFORMATION</h1>
+
+<div class="profile">
+  <img src="profile.gif">
+</div>
+
+<div class="desc">
+ini adalah informasi dari DRAZ, jika ingin masuk ke dalam channel wa, discord, dll, bisa di sini
+</div>
+
+<div class="grid">
+
+<div class="btn fade" onclick="go('https://www.youtube.com/@drazxzyy')">
+  <img src="1button.jpg">
+</div>
+
+<div class="btn fade" onclick="go('https://t.me/drazxxz')">
+  <img src="2button.jpg">
+</div>
+
+<div class="btn fade" onclick="go('https://wa.me/6283817102474')">
+  <img src="3button.jpg">
+</div>
+
+<div class="btn fade" onclick="go('https://tiktok.com/@hendraaaaaaaniii')">
+  <img src="4button.jpg">
+</div>
+
+<div class="btn fade" onclick="go('https://whatsapp.com/channel/0029VbBrD3OJJhzd3OHDzJ3I')">
+  <img src="5button.jpg">
+</div>
+
+<div class="btn fade" onclick="go('https://discord.gg/8WmfZTSG5T')">
+  <img src="6button.jpg">
+</div>
+
+</div>
+</div>
+
+<div class="footer">© By DRAZ</div>
+
+<script>
+function go(link){
+  document.getElementById("loading").style.display="flex";
+  setTimeout(()=>{ location.href=link; },1200);
+}
+
+/* FADE IN */
+const items=document.querySelectorAll(".fade");
+const obs=new IntersectionObserver(e=>{
+e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("show")}})
+},{threshold:0.15});
+items.forEach(i=>obs.observe(i));
+</script>
+
+</body>
+</html>
