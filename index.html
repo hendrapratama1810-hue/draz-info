@@ -23,7 +23,7 @@ z-index:-1;
 }
 
 /* CONTAINER */
-.container{padding:25px 12px 90px;text-align:center}
+.container{padding:25px 12px 110px;text-align:center}
 
 /* TITLE */
 h1{font-size:26px;margin-bottom:15px;letter-spacing:2px}
@@ -53,7 +53,8 @@ gap:16px;max-width:360px;margin:0 auto;
 .btn{
 aspect-ratio:1/1;border-radius:16px;overflow:hidden;cursor:pointer;
 background:#222;position:relative;
-box-shadow:0 0 12px rgba(200,200,200,0.6),
+box-shadow:
+0 0 12px rgba(200,200,200,0.6),
 0 0 28px rgba(200,200,200,0.35),
 inset 0 0 12px rgba(255,255,255,0.08);
 transition:0.25s;
@@ -131,6 +132,10 @@ ini adalah informasi dari DRAZ, jika ingin masuk ke dalam channel wa, discord, d
   <img src="6button.jpg">
 </div>
 
+<div class="btn fade" onclick="go('https://www.instagram.com/drazzx_z?igsh=MWEwcGE0djl5cWxmag==')">
+  <img src="7button.jpg">
+</div>
+
 </div>
 </div>
 
@@ -144,20 +149,12 @@ function go(link){
   setTimeout(()=>{ location.href=link; },1200);
 }
 
-/* HILANGKAN LOADING JIKA PINDAH APP / BALIK LAGI */
+/* AUTO HIDE LOADING JIKA PINDAH APP / BALIK */
 document.addEventListener("visibilitychange", ()=>{
-  if(document.hidden){
-    loading.style.display="none";
-  }
+  if(document.hidden) loading.style.display="none";
 });
-
-window.addEventListener("pageshow", ()=>{
-  loading.style.display="none";
-});
-
-window.addEventListener("blur", ()=>{
-  loading.style.display="none";
-});
+window.addEventListener("pageshow", ()=> loading.style.display="none");
+window.addEventListener("blur", ()=> loading.style.display="none");
 
 /* FADE IN */
 const items=document.querySelectorAll(".fade");
